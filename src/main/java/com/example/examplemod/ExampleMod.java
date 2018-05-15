@@ -46,21 +46,23 @@ public class ExampleMod
 	public static class RegistrationHandler 
 	{
 		@SubscribeEvent
-		public static void registerItems(RegistryEvent.Register<Item> event)
-		{
-			ItemRegistrator.register(event.getRegistry());
-		}
-		
-		@SubscribeEvent
 		public static void registerBlocks(RegistryEvent.Register<Block> event)
 		{
 			BlockRegistrator.register(event.getRegistry());
 		}
 		
 		@SubscribeEvent
-		public static void registerModels(ModelRegistryEvent event) {
-			ItemRegistrator.registerModels();
+		public static void registerItems(RegistryEvent.Register<Item> event)
+		{
+			BlockRegistrator.registerItemBlocks(event.getRegistry());
+			ItemRegistrator.register(event.getRegistry());
+		}
+		
+		@SubscribeEvent
+		public static void registerModels(ModelRegistryEvent event) 
+		{;
 			BlockRegistrator.registerModels();
+			ItemRegistrator.registerModels();
 		}
 	}
 }
