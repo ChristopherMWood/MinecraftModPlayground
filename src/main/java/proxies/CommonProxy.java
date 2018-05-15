@@ -1,4 +1,4 @@
-package com.example.examplemod;
+package proxies;
 
 import net.minecraft.item.Item;
 

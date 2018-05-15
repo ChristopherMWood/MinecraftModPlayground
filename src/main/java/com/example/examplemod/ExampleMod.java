@@ -1,7 +1,6 @@
 package com.example.examplemod;
 
 import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -11,55 +10,57 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import proxies.CommonProxy;
+import registrators.BlockRegistrator;
+import registrators.ItemRegistrator;
 
-@Mod(modid = ExampleMod.MODID, name = ExampleMod.NAME, version = ExampleMod.VERSION)
-public class ExampleMod
+@Mod(modid = ExampleMod.modId, name = ExampleMod.name, version = ExampleMod.version)
+public class ExampleMod 
 {
-    @SidedProxy(serverSide = "com.example.examplemod.CommonProxy", clientSide = "com.example.examplemod.ClientProxy")
-    public static CommonProxy proxy;
-    public static final String MODID = "examplemod";
-    public static final String NAME = "Example Mod";
-    public static final String VERSION = "1.0";
+	public static final String modId = "examplemod";
+	public static final String name = "Example Mod";
+	public static final String version = "1.0.0";
+	
+	@SidedProxy(serverSide = "proxies.CommonProxy", clientSide = "proxies.ClientProxy")
+	public static CommonProxy proxy;
 
-	@Mod.Instance(MODID)
+	@Mod.Instance(modId)
 	public static ExampleMod instance;
 
 	@Mod.EventHandler
-	public void preInit(FMLPreInitializationEvent event) 
-	{
-		System.out.println(NAME + " is loading!");
+	public void preInit(FMLPreInitializationEvent event) {
+		System.out.println(name + " is loading!");
 	}
 
 	@Mod.EventHandler
-	public void init(FMLInitializationEvent event) 
-	{
+	public void init(FMLInitializationEvent event) {
 		
 	}
 
 	@Mod.EventHandler
-	public void postInit(FMLPostInitializationEvent event) 
-	{
+	public void postInit(FMLPostInitializationEvent event) {
 
 	}
-	
+
 	@Mod.EventBusSubscriber
 	public static class RegistrationHandler 
 	{
-		public static UdderBlock udderBlock = new UdderBlock().setCreativeTab(CreativeTabs.MATERIALS);
-		
 		@SubscribeEvent
-		public static void registerBlocks(RegistryEvent.Register<Block> event) 
+		public static void registerItems(RegistryEvent.Register<Item> event)
 		{
-			event.getRegistry().registerAll
-			(
-				udderBlock
-			);
+			ItemRegistrator.register(event.getRegistry());
 		}
 		
 		@SubscribeEvent
-		public static void registerModels(ModelRegistryEvent event) 
+		public static void registerBlocks(RegistryEvent.Register<Block> event)
 		{
-			udderBlock.registerItemModel(Item.getItemFromBlock(udderBlock));
+			BlockRegistrator.register(event.getRegistry());
+		}
+		
+		@SubscribeEvent
+		public static void registerModels(ModelRegistryEvent event) {
+			ItemRegistrator.registerModels();
+			BlockRegistrator.registerModels();
 		}
 	}
 }
