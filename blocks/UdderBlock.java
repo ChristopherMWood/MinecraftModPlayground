@@ -8,7 +8,7 @@ public class UdderBlock extends ModBlock
 {
     public UdderBlock()
     {
-        super(Material.CAKE, "utterblock");
+        super(Material.CAKE, "utter_block");
         
         this.setSoundType(SoundType.CLOTH);
 		setHardness(300000f);

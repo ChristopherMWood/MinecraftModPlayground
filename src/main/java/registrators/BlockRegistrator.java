@@ -1,31 +1,33 @@
 package registrators;
 
-import blocks.ModBlock;
+import blocks.PrankBlock;
+import blocks.UdderBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class BlockRegistrator 
 {
-	public static ModBlock udderBlock = new ModBlock(Material.CACTUS, "UdderBlock").setCreativeTab(CreativeTabs.MATERIALS);
+	public static UdderBlock udderBlock = new UdderBlock();
+	public static PrankBlock prankBlock = new PrankBlock();
 	
 	public static void register(IForgeRegistry<Block> registry) 
 	{
-		registry.registerAll(udderBlock);
+		registry.registerAll(udderBlock, prankBlock);
 	}
 	
 	public static void registerItemBlocks(IForgeRegistry<Item> registry) 
 	{
 		registry.registerAll(
-				udderBlock.createItemBlock()
+			udderBlock.createItemBlock(),
+			prankBlock.createItemBlock()
 		);
 	}
 	
 	public static void registerModels() 
 	{
 		udderBlock.registerItemModel(Item.getItemFromBlock(udderBlock));
+		prankBlock.registerItemModel(Item.getItemFromBlock(prankBlock));
 	}
 
 }
