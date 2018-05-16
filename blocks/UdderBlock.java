@@ -8,17 +8,8 @@ public class UdderBlock extends ModBlock
 {
     public UdderBlock()
     {
-        super(Material.CAKE, "utter_block");
-        
-        this.setSoundType(SoundType.CLOTH);
-		setHardness(300000f);
-		setResistance(500000f);
+        super(Material.CAKE, "udder_block");
+		
+		this.setCreativeTab(CreativeTabs.MATERIALS);
     }
-    
-	@Override
-	public UdderBlock setCreativeTab(CreativeTabs tab) 
-	{
-		super.setCreativeTab(tab);
-		return this;
-	}
 }

@@ -7,7 +7,7 @@ public class UdderBlock extends ModBlock
 {
     public UdderBlock()
     {
-        super(Material.CAKE, "utterblock");
+        super(Material.CAKE, "udder_block");
         
 		setCreativeTab(CreativeTabs.MATERIALS);
     }

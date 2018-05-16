@@ -8,7 +8,6 @@ public class PrankBlock extends ModBlock
 	public PrankBlock() 
 	{
 		super(Material.ROCK, "prank_block");
-		setUnlocalizedName("Prank Block");
 		
 		this.setCreativeTab(CreativeTabs.MATERIALS);
 	}
