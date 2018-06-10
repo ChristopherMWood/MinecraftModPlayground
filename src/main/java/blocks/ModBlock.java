@@ -30,25 +30,7 @@ public class ModBlock extends Block {
 		setUnlocalizedName(name);
 		setRegistryName(name);
 	}
-	
-	@Override
-    public boolean onBlockActivated(World worldIn,
-            BlockPos pos,
-            IBlockState state,
-            EntityPlayer playerIn,
-            EnumHand hand,
-            EnumFacing side,
-            float hitX,
-            float hitY,
-            float hitZ)
-    {
-    	playerIn.jump();
-    	playerIn.performHurtAnimation();
-    	Explosion explosion = worldIn.createExplosion(playerIn, playerIn.posX, playerIn.posY, playerIn.posZ, 100.0f, true);
-    	explosion.doExplosionA();
-		return true;
-    }
-	
+
 	public void registerItemModel(Item itemBlock) {
 		ExampleMod.proxy.registerItemRenderer(itemBlock, 0, name);
 	}
