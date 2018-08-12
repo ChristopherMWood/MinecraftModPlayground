@@ -44,5 +44,4 @@ public class ModBlock extends Block {
 		super.setCreativeTab(tab);
 		return this;
 	}
-
 }

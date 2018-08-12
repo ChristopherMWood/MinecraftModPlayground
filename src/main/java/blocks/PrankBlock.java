@@ -7,10 +7,15 @@ import javax.annotation.Nullable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
@@ -40,6 +45,9 @@ public class PrankBlock extends ModBlock
             float hitY,
             float hitZ)
     {
+		//player.bounding//boundingBox.maxY = player.boundingBox.minY + (height);
+		
+		CreatePitUnderPlayer(world, player);
     	int prank = randomizer.nextInt(7);
     	
     	if (prank == 0)
@@ -59,6 +67,36 @@ public class PrankBlock extends ModBlock
     	
 		return true;
     }
+
+	@Override
+	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+	{	
+		if (!worldIn.isRemote && entityIn instanceof EntityLivingBase) {
+			worldIn.destroyBlock(pos, false);
+		}
+	}
+	
+	private void CreatePitUnderPlayer(World world, EntityPlayer player)
+	{
+		int depthOfPit = 10;
+		
+		for (int i = 1; i < depthOfPit; i++)
+		{
+			for (int j = -5; j < 5; j++)
+			{
+				for (int k = -5; k < 5; k++)
+				{
+					double xLocation = player.posX + j;
+					double yLocation = player.posY - i;
+					double zLocation = player.posZ + k;
+					
+					BlockPos blockPosition = new BlockPos(xLocation, yLocation, zLocation);
+					world.destroyBlock(blockPosition, false);
+				}
+			}
+		}
+		
+	}
     
     private void RandomlyTeleportUser(EntityPlayer player)
     {
@@ -109,7 +147,7 @@ public class PrankBlock extends ModBlock
     
     private void MobPlayerWithPigs(World world, EntityPlayer player)
     {
-    	int numberOfPigsInMob = 100;
+    	int numberOfPigsInMob = 1000;
     	for (int i = 0; i < numberOfPigsInMob; i++)
     	{
     		int randomX = -15 + randomizer.nextInt(30);
@@ -122,7 +160,8 @@ public class PrankBlock extends ModBlock
     			randomZ += 5;
     		
     		EntityPig pig = new EntityPig(world);
-    		pig.setLocationAndAngles(player.posX + randomX, player.posY, player.posZ + randomZ, 1.0f, 1.0f);
+    		pig.setLocationAndAngles(player.posX + randomX, player.posY + 50, player.posZ + randomZ, 1.0f, 1.0f);
+    		pig.
     		world.spawnEntity(pig);
     	}
     }

@@ -1,0 +1,11 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "comment" : "Everything in default applies to all variants below, but can be overridden"
+  },
+  "variants": {
+  	"comment" : "Variants represent the different forms this block can take",
+    "normal": [{}],
+    "differnt": [{}]
+  }
+}
