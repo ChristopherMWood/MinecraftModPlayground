@@ -47,8 +47,8 @@ public class PrankBlock extends ModBlock
     {
 		//player.bounding//boundingBox.maxY = player.boundingBox.minY + (height);
 		
-		CreatePitUnderPlayer(world, player);
-    	int prank = randomizer.nextInt(7);
+		//CreatePitUnderPlayer(world, player);
+    	int prank = 6;//randomizer.nextInt(7);
     	
     	if (prank == 0)
     		RandomlyTeleportUser(player);

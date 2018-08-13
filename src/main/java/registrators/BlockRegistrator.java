@@ -1,5 +1,6 @@
 package registrators;
 
+import blocks.CheeseBlock;
 import blocks.PrankBlock;
 import blocks.UdderBlock;
 import net.minecraft.block.Block;
@@ -10,17 +11,19 @@ public class BlockRegistrator
 {
 	public static UdderBlock udderBlock = new UdderBlock();
 	public static PrankBlock prankBlock = new PrankBlock();
+	public static CheeseBlock cheeseBlock = new CheeseBlock();
 	
 	public static void register(IForgeRegistry<Block> registry) 
 	{
-		registry.registerAll(udderBlock, prankBlock);
+		registry.registerAll(udderBlock, prankBlock, cheeseBlock);
 	}
 	
 	public static void registerItemBlocks(IForgeRegistry<Item> registry) 
 	{
 		registry.registerAll(
 			udderBlock.createItemBlock(),
-			prankBlock.createItemBlock()
+			prankBlock.createItemBlock(),
+			cheeseBlock.createItemBlock()
 		);
 	}
 	
@@ -28,6 +31,6 @@ public class BlockRegistrator
 	{
 		udderBlock.registerItemModel(Item.getItemFromBlock(udderBlock));
 		prankBlock.registerItemModel(Item.getItemFromBlock(prankBlock));
+		cheeseBlock.registerItemModel(Item.getItemFromBlock(cheeseBlock));
 	}
-
 }
