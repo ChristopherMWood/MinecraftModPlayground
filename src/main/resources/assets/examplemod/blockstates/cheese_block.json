@@ -11,7 +11,7 @@
     "normal": [{}],
     "inventory": [{ "textures": { "all": "examplemod:blocks/cheese_block" } }],
     "moldy": {
-      "true":  { "textures": { "all": "blocks/dirt" } },
+      "true":  { "textures": { "all": "examplemod:blocks/moldy_cheese_block" } },
       "false": { "textures": { "all": "examplemod:blocks/cheese_block" } }
     }
   }
